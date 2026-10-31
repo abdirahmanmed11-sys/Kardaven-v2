@@ -1,0 +1,209 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Sora", sans-serif;
+  --font-sans: "Manrope", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-electric: var(--electric);
+  --color-success: var(--success);
+}
+
+:root {
+  --radius: 0.875rem;
+  --background: oklch(0.11 0.02 262);
+  --foreground: oklch(0.95 0.01 250);
+  --card: oklch(0.17 0.035 260);
+  --card-foreground: oklch(0.95 0.01 250);
+  --popover: oklch(0.17 0.035 260);
+  --popover-foreground: oklch(0.95 0.01 250);
+  --primary: oklch(0.82 0.14 78);
+  --primary-foreground: oklch(0.16 0.03 70);
+  --secondary: oklch(0.21 0.04 258);
+  --secondary-foreground: oklch(0.95 0.01 250);
+  --muted: oklch(0.2 0.035 258);
+  --muted-foreground: oklch(0.68 0.02 255);
+  --accent: oklch(0.25 0.06 250);
+  --accent-foreground: oklch(0.95 0.01 250);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.7 0.12 245 / 18%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.72 0.17 240);
+  --electric: oklch(0.74 0.15 230);
+  --gold: oklch(0.8 0.12 80);
+  --gold-foreground: oklch(0.15 0.02 80);
+  --success: oklch(0.75 0.15 160);
+  --glow-electric: 0 0 40px -8px color-mix(in oklab, var(--electric) 70%, transparent);
+  --glow-gold: 0 0 30px -10px color-mix(in oklab, var(--gold) 70%, transparent);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { background: var(--color-background); color-scheme: dark; }
+  input, textarea, select, button { color: inherit; font: inherit; }
+  select option { background: var(--card); color: var(--foreground); }
+  ::placeholder { color: var(--muted-foreground); opacity: .75; }
+  input:-webkit-autofill, textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--foreground);
+    -webkit-box-shadow: 0 0 0 1000px var(--muted) inset;
+    caret-color: var(--foreground);
+  }
+  ::selection { background: color-mix(in oklab, var(--electric) 40%, transparent); }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  body {
+    background-color: transparent;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 70%, transparent);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+}
+@utility glow-gold-ring { filter: drop-shadow(0 0 6px var(--gold)) drop-shadow(0 0 14px color-mix(in oklab, var(--gold) 60%, transparent)); }
+@utility glow-electric { box-shadow: var(--glow-electric); }
+@utility glow-gold { box-shadow: var(--glow-gold); }
+@utility text-gradient-gold {
+  background: linear-gradient(100deg, var(--gold), oklch(0.95 0.05 90), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility text-gradient-electric {
+  background: linear-gradient(100deg, var(--foreground), var(--electric));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility ai-border {
+  border: 1px solid color-mix(in oklab, var(--electric) 45%, transparent);
+  box-shadow: var(--glow-electric), inset 0 0 30px -12px color-mix(in oklab, var(--electric) 60%, transparent);
+}
+@utility grid-bg {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--electric) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--electric) 7%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@keyframes orbit { to { transform: rotate(360deg); } }
+@keyframes pulse-glow { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+@utility animate-orbit { animation: orbit 14s linear infinite; }
+@utility animate-orbit-slow { animation: orbit 28s linear infinite reverse; }
+@utility animate-pulse-glow { animation: pulse-glow 2.6s ease-in-out infinite; }
+@utility animate-rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+
+/* ---- Cinematic background & motion ---- */
+@utility space-glow {
+  background: radial-gradient(circle, color-mix(in oklab, var(--electric) 22%, transparent), transparent 65%);
+  filter: blur(20px);
+  will-change: transform, opacity;
+  animation: drift 14s ease-in-out infinite alternate, breathe 7s ease-in-out infinite;
+}
+@utility space-glow-2 {
+  background: radial-gradient(circle, color-mix(in oklab, var(--gold) 10%, transparent), transparent 65%);
+  animation-duration: 18s, 9s; animation-direction: alternate-reverse, normal;
+}
+@utility stars {
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, var(--foreground), transparent),
+    radial-gradient(1px 1px at 72% 34%, var(--foreground), transparent),
+    radial-gradient(1.5px 1.5px at 38% 72%, var(--electric), transparent),
+    radial-gradient(1px 1px at 88% 82%, var(--foreground), transparent),
+    radial-gradient(1px 1px at 55% 10%, var(--gold), transparent),
+    radial-gradient(1px 1px at 22% 52%, var(--foreground), transparent);
+  background-size: 420px 420px;
+  opacity: .45;
+  inset: -420px 0 0 -420px !important;
+  will-change: transform;
+  animation: stars-move 60s linear infinite;
+}
+@utility stars-2 { background-size: 640px 640px; opacity: .25; animation-duration: 110s; }
+@utility orbit-line {
+  border: 1px solid color-mix(in oklab, var(--electric) 9%, transparent);
+  animation: orbit 240s linear infinite;
+  mask-image: linear-gradient(120deg, transparent 20%, black 50%, transparent 80%);
+}
+@utility orbit-line-2 { border-color: color-mix(in oklab, var(--gold) 8%, transparent); animation-duration: 180s; animation-direction: reverse; }
+@utility page-enter { animation: page-in .32s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes page-in { from { opacity: 0 } to { opacity: 1 } }
+@utility particle {
+  position: absolute; bottom: -10px; width: 3px; height: 3px; border-radius: 9999px;
+  background: var(--electric); opacity: 0; will-change: transform, opacity;
+  animation: float-up linear infinite;
+}
+@keyframes float-up {
+  0% { transform: translate3d(0,0,0); opacity: 0 }
+  15% { opacity: .8 } 85% { opacity: .6 }
+  100% { transform: translate3d(20px,-105vh,0); opacity: 0 }
+}
+@keyframes breathe { 0%,100% { opacity: .7 } 50% { opacity: 1 } }
+@utility fab-center { box-shadow: 0 0 18px color-mix(in oklab, var(--electric) 55%, transparent), 0 6px 14px rgb(0 0 0 / .45); }
+@utility tap { transition: transform .15s ease, background-color .2s, border-color .2s, color .2s; &:active { transform: scale(.97); } }
+@utility lift {
+  transition: transform .25s ease, border-color .25s, box-shadow .25s;
+  &:hover { transform: translateY(-2px); border-color: color-mix(in oklab, var(--electric) 40%, transparent); box-shadow: var(--glow-electric); }
+  &:active { transform: scale(.99); }
+}
+@keyframes drift { from { transform: translate3d(0,0,0) scale(1) } to { transform: translate3d(10vw,8vh,0) scale(1.15) } }
+@keyframes stars-move { to { transform: translate3d(420px,420px,0); } }
+
+@media (max-width: 768px) {
+  /* Mobile: static background + no live blur, so page switches stay smooth */
+  .stars-2, .orbit-line, .particle { display: none; }
+  .space-glow, .stars { filter: none; animation: none !important; will-change: auto; }
+  .glass { backdrop-filter: none; background: color-mix(in oklab, var(--card) 92%, transparent); }
+  .backdrop-blur-xl { backdrop-filter: none !important; }
+  .page-enter { animation-duration: .18s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .particle, .stars-2 { display: none; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+
+.kd-md ul { list-style: disc; padding-left: 1.25rem; }
+.kd-md ol { list-style: decimal; padding-left: 1.25rem; }
+.kd-md a { color: var(--electric, currentColor); text-decoration: underline; }
+.kd-md strong { font-weight: 600; }
+.kd-md h1, .kd-md h2, .kd-md h3 { font-weight: 600; margin-top: .5rem; }

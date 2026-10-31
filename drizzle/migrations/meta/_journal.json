@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792984296394,
+      "tag": "0000_kardaven_chat",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793067691530,
+      "tag": "0001_user_badges",
+      "breakpoints": true
+    }
+  ]
+}
